@@ -173,6 +173,7 @@ Slash Command starts
 
 
 
+
 /* quick way to add an attachment using slash command
 controller.hears(["books"], [ 'direct_message','slash_command','direct_mention','mention'], function (bot, message) {
       bot.replyPrivate(message, {
