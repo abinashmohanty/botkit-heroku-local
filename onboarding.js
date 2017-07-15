@@ -162,61 +162,6 @@ controller.on('rtm_close',function(bot) {
 ////// local testing goes here
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-/* ********************** Bot hears ux invite and conform via conversation */
-controller.hears(['invite someone', 'invite my friends', 'to invite someone', 'add into this group', 'gsiuxd invite','slack invite', 'ux slack invite', 'group invite'], ['ambient', 'direct_message','direct_mention','mention'], function (bot, message) {
-
-  // start a conversation to handle this response.
-  bot.startConversation(message,function(err,convo) {
-
-    convo.ask('Are you looking out for our Slack invite? Say `YES` or `NO`',[
-      {
-        pattern: bot.utterances.yes,
-        callback: function(response,convo) {
-          convo.say('Okay!');
-          convo.say('Here is our *<https://gsiuxd.herokuapp.com/|GSIUXD Slack Invite>*');
-          // do something else...
-          convo.next();
-
-        }
-      },
-      {
-        pattern: bot.utterances.no,
-        //default: true,
-        callback: function(response,convo) {
-          convo.say('Okay!');
-          // do something else...
-          convo.next();
-        }
-      },
-      {
-        pattern: 'quit',
-        default: true,
-        callback: function(response,convo) {
-          //conclude a message before quitting 
-          convo.say("I didn't understand this. Let me skip this question for now.");
-          convo.next(); // move to the next convo and stop the conversation 
-        }
-      },
-      {
-          callback: function(response,convo) {
-          convo.stop(); // current conversation stops here 
-          }
-      },
-
-      {
-        //default: true,
-        callback: function(response,convo) {
-          // just repeat the question
-          convo.repeat();
-          convo.next();
-        }
-      }
-    ]);
-
-  })
-
-});
-
 
 
 
